@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Safi Weather</title>
+</head>
+<body>
+    <div class="container">
+        <canvas id="chart"></canvas>
+    </div>
+    <div>
+        <!-- <input type="button" onclick="updateChart()" value="Next" style="width: 200px; background-color: #ffbb00;"> -->
+        <select id="sel" onchange="run1()">
+            <option value=0>average high °C</option>
+            <option value=1>daily mean</option>
+            <option value=2>Average low °C </option>
+            <option value=3>Average precipitation mm</option>
+            <option value=4>Average precipitation days</option>
+            <option value=5>Mean monthly sunshine hours</option>
+        </select>
+    </div>
+
+    <script>
+        let chart=document.getElementById('chart').getContext('2d');
+
+        // Chart.defaults.global.defaultFontFamily = 'serif';
+        // Chart.defaults.global.defaultFontSize = 18;
+        // Chart.defaults.global.defaultFontFamily = '#777';
+        let weather=new Chart(chart, {
+            type:'bar',
+            data:{
+                labels:['Jan',	'Feb',	'Mar','Apr','May','Jun'	,'Jul',	'Aug','	Sep','Oct'	,'Nov'	,'Dec'],
+                datasets:[{
+                    label:'Average high °C ',
+                    data:[
+                        18.2,
+                        19.0,
+                        20.6,
+                        21.3,
+                        23.3,
+                        24.6,
+                        28.8,
+                        29.2,
+                        27.6,
+                        25.2,
+                        21.6,
+                        18.8,
+                        23.2,
+                    ],
+                    backgroundColor:[
+                     '#FFA042',
+                     '#FF9B37',
+                     '#FF9021',
+                     '#FF8B17',
+                     '#FF7D00',
+                     '#FF7400',
+                     '#FF5700',
+                     '#FF5400',
+                     '#FF5F00',
+                     '#FF7000',
+                     '#FF8913',
+                     '#FF9C39'
+                    ],
+                    borderWidth:1,
+                    borderColor:'#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'black',
+                }]
+            },
+            options:{
+                title:{
+                    display:true,
+                    text:'Safi Weather',
+                    fontSize:30,
+                    fontColor:'black'
+                },
+                legend:{
+                    position:'right',
+                    labels:{
+                        fontSize:18,
+                        fontColor:'black'
+                    }
+
+                }
+            }
+        });
+        
+
+        
+
+        // function data1(){
+        //     weather.data.datasets[0].data =[10, 14, 50, 40, 10, 70, 15, 90, 13,49, 18, 32];
+        //     weather.update();
+        // }
+        
+
+
+        function updateChart(){
+            weather.data.datasets[0].data = [18.2, 19.0, 20.6, 21.3, 23.3, 24.6, 28.8, 29.2, 27.6, 25.2, 21.6, 18.8, 23.2,];
+            weather.update();
+        };
+
+
+
+        function updateChart1(){
+            weather.data.datasets[0].data = [13.0, 13.8, 14.9, 16.0, 18.3, 20.3, 23.7, 24.1, 22.6, 20.0, 16.6, 13.7];
+            weather.options.title.text = 'daily mean'
+            weather.update();
+        };
+
+
+
+        function updateChart2(){
+            weather.data.datasets[0].data = [7.7, 8.5, 9.2, 10.8, 13.3, 16.0, 18.5, 18.9, 17.5, 14.8, 11.6, 8.5];
+            weather.update();
+        };
+
+
+
+        function updateChart3(){
+            weather.data.datasets[0].data = [79.2,67.4,45.4,44.5,16.8,4.0,0.3,0.3,4.3,42.7,92.1,91.5];
+            weather.update();
+        };
+
+
+
+        function updateChart4(){
+            weather.data.datasets[0].data = [12.4,10.1,9.8,9.5,5.1,1.6,0.4,0.4,1.8,6.5,10.1,12.3];
+            weather.update();
+        };
+
+
+
+        function updateChart5(){
+            weather.data.datasets[0].data = [205.5,208.5,258.7,277.8,314.4,298.0,325.8,316.5,263.0,243.6,204.1	,198.7];
+            weather.update();
+        };
+
+
+
+
+        function run1(){
+            let sl=document.getElementById('sel');
+            let optValue=sl.options[sl.selectedIndex].value;
+
+            if(optValue == 0){
+                updateChart();
+            }else if (optValue == 1) {
+                updateChart1();
+            }else if(optValue == 2){
+                updateChart2();
+            }else if(optValue == 3){
+                updateChart3();
+            }else if(optValue == 4){
+                updateChart4();
+            }else if(optValue == 5){
+                updateChart5();
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
